@@ -1,5 +1,15 @@
-
-
+/**
+ * SessionBox
+ *
+ * Javascript
+ *
+ * @author    Emmanuel ROECKER
+ * @license   MIT
+ *
+ * Created : 18/01/2021
+ * File : sessionbox.js
+ *
+ */
 
 var SessionBox = (function () {
 	function SessionBox(cookies) {
@@ -35,7 +45,7 @@ var SessionBox = (function () {
 		this.prefix = "sessionbox-";
 		this.cookies = cookies;
 
-		if (sessionStorage.getItem(this.prefix + 'closed')) { // a tab cannot be used if logout
+		if (sessionStorage.getItem(this.prefix + 'closed')) { // a tab cannot be reused if logout
 			this.restore();
 			document.location.reload();
 		}

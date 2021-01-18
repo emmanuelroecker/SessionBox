@@ -4,7 +4,84 @@ Multi login to website - Cookie Site Isolation with JavaScript
 
 ## English
 
+Websites generally use cookies to record the user's unique identifier. 
+without having to ask for his login/password again at each request.
 
+Cookies belong to a domain name.
+
+In a classic browser (without private mode activated), you cannot connect with the same browser 
+on several user accounts of the same website.
+
+To allow multiple user accounts to be logged on, there is a workaround by isolating cookies by browser tab.
+
+The idea is to save cookies in the [sessionStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/sessionStorage) 
+and restore them automatically when the tab is displayed or before changing web pages.
+
+The constraint is that you cannot log out of a user account without using the `SessionBox.close()` function.
+
+### Server side
+
+Make sure that a new user id is created when the user is logged in (even if a cookie already exists).
+
+An example in PHP : 
+
+```PHP
+session_name('COOKIE1');
+$newid = session_create_id();
+session_id($newid);
+session_start();
+```
+
+### Client side
+
+#### Init
+
+The project depends on [js-cookie](https://github.com/js-cookie/js-cookie) for cookie management.
+
+```html
+<script src="js.cookie.min.js"></script>
+<script src="sessionbox.js"></script>
+```
+
+The list of all names of cookies used for the user session must be indicated.
+Cookies existing from the first connection are indicated by the value `true`.
+
+```javascript
+var sessionbox = new SessionBox({
+		'COOKIE1': true,
+		'COOKIE2': false
+	});
+```
+
+#### Update and iFrame
+
+A cookie can be saved afterwards (in case of a later connection via iFrame), but must have been declared beforehand (see above):
+
+```javascript
+sessionbox.save('COOKIE2');
+```
+
+#### Logout
+
+Logging out, i.e. deleting cookies, can only be done from SessionBox :
+
+```javascript
+sessionbox.close();
+```
+
+### Démo
+
+```sh
+./start.sh
+```
+
+http://localhost:8000
+
+## Contact
+
+Authors : Emmanuel ROECKER & Rym BOUCHAGOUR
+
+Web Development Blog - http://dev.glicer.com
 
 ## Français
 

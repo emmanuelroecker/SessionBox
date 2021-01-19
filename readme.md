@@ -1,7 +1,8 @@
 # SessionBox
 
-Multi login to website - Cookie Site Isolation with JavaScript
-Log into multiple accounts on the same site simultaneously
+Multi login to website - Cookie Site Isolation with JavaScript.
+
+Log into multiple accounts on the same site simultaneously.
 
 ## English
 

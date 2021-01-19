@@ -1,4 +1,4 @@
-# SessionBox
+# SessionBox / MultiLogin
 
 Multi login to website - Cookie Site Isolation with JavaScript.
 
